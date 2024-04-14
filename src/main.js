@@ -1,9 +1,8 @@
 import Player from './classes/Player.js';
-import Bullet from './classes/Bullet.js';
-import Enemy from './classes/Enemy.js';
 
-import { createAnimation } from './createAnimation.js';
 import { eventListener } from './eventListener.js';
+import { createAnimation } from './createAnimation.js';
+import { spawnEnemies } from './spawnEnemies.js';
 
 // Constants for setting up canvas
 const canvasElement = document.querySelector('canvas');
@@ -17,18 +16,16 @@ canvasElement.height = window.innerHeight;
 const xCanvasCenter = canvasElement.width / 2;
 const yCanvasCenter = canvasElement.height / 2;
 
-// Array for storing the bullets
+// Arrays for storing the bullets and enemies
 const bullets = [];
+const enemies = [];
 
 // Player Instance
 const player = new Player(xCanvasCenter, yCanvasCenter, 30, 'blue', canvasContext);
 player.draw();
 
-// Bullet Instance
-const bullet = new Bullet(xCanvasCenter, yCanvasCenter, 5, 'red', { x: 1, y: 1 }, canvasContext);
+// -----------------------------------------------------------------------------------
 
-// -----------------------------------------------------------------------------
-
-// Event listener for shooting bullets
-eventListener(xCanvasCenter, yCanvasCenter, bullets, canvasContext)
-createAnimation(canvasContext, canvasElement, player, bullets);
+eventListener(xCanvasCenter, yCanvasCenter, bullets, canvasContext);
+createAnimation(canvasContext, canvasElement, player, bullets, enemies);
+spawnEnemies(enemies, canvasContext);
