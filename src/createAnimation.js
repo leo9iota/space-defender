@@ -1,5 +1,5 @@
-export function createAnimation(canvasContext, canvasElement, player, bullets) {
-  requestAnimationFrame(() => createAnimation(canvasContext, canvasElement, player, bullets));
+function createAnimation(canvasContext, canvasElement, player, bullets, enemies) {
+  requestAnimationFrame(() => createAnimation(canvasContext, canvasElement, player, bullets, enemies));
 
   canvasContext.clearRect(0, 0, canvasElement.width, canvasElement.height);
 
@@ -8,4 +8,10 @@ export function createAnimation(canvasContext, canvasElement, player, bullets) {
   bullets.forEach((bullet) => {
     bullet.update();
   });
+
+  enemies.forEach((enemy) => {
+    enemy.update();
+  });
 }
+
+export { createAnimation };
