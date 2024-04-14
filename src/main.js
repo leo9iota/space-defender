@@ -2,6 +2,9 @@ import Player from './classes/Player.js';
 import Bullet from './classes/Bullet.js';
 import Enemy from './classes/Enemy.js';
 
+import { createAnimation } from './createAnimation.js';
+import { eventListener } from './eventListener.js';
+
 // Constants for setting up canvas
 const canvasElement = document.querySelector('canvas');
 const canvasContext = canvasElement.getContext('2d');
@@ -26,28 +29,6 @@ const bullet = new Bullet(xCanvasCenter, yCanvasCenter, 5, 'red', { x: 1, y: 1 }
 
 // -----------------------------------------------------------------------------
 
-function animate() {
-  requestAnimationFrame(animate);
-
-  canvasContext.clearRect(0, 0, canvasElement.width, canvasElement.height);
-
-  player.draw();
-
-  bullets.forEach((bullet) => {
-    bullet.update();
-  });
-}
-
 // Event listener for shooting bullets
-addEventListener('click', (event) => {
-  const bulletAngle = Math.atan2(event.clientY - yCanvasCenter, event.clientX - xCanvasCenter);
-
-  const bulletVelocity = {
-    x: Math.cos(bulletAngle),
-    y: Math.sin(bulletAngle),
-  };
-
-  bullets.push(new Bullet(xCanvasCenter, yCanvasCenter, 5, 'red', bulletVelocity, canvasContext));
-});
-
-animate();
+eventListener(xCanvasCenter, yCanvasCenter, bullets, canvasContext)
+createAnimation(canvasContext, canvasElement, player, bullets);
