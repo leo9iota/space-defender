@@ -1,6 +1,6 @@
-import Bullet from './classes/Bullet.js'
+import Bullet from './classes/Bullet.js';
 
-export function eventListener(xCanvasCenter, yCanvasCenter, bullets, canvasContext) {
+function eventListener(xCanvasCenter, yCanvasCenter, bullets, canvasContext) {
   addEventListener('click', (event) => {
     const bulletAngle = Math.atan2(event.clientY - yCanvasCenter, event.clientX - xCanvasCenter);
 
@@ -12,3 +12,5 @@ export function eventListener(xCanvasCenter, yCanvasCenter, bullets, canvasConte
     bullets.push(new Bullet(xCanvasCenter, yCanvasCenter, 5, 'red', bulletVelocity, canvasContext));
   });
 }
+
+export { eventListener };
