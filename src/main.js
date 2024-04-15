@@ -26,6 +26,6 @@ player.draw();
 
 // -----------------------------------------------------------------------------------
 
-eventListener(xCanvasCenter, yCanvasCenter, bullets, canvasContext);
+eventListener(canvasContext, xCanvasCenter, yCanvasCenter, bullets);
 createAnimation(canvasContext, canvasElement, player, bullets, enemies);
-spawnEnemies(enemies, canvasContext);
+spawnEnemies(canvasContext, canvasElement, enemies);
