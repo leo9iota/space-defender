@@ -2,10 +2,17 @@ import Enemy from './classes/Enemy.js';
 
 function spawnEnemies(canvasContext, canvasElement, enemies) {
   setInterval(() => {
-    const radius = 30;
-    const x = Math.random() < 0.5 ? 0 - radius : canvasElement.width + radius;
-    const y = Math.random() < 0.5 ? 0 - radius : canvasElement.height + radius;
+    let x, y;
+    const radius = Math.random() * (30 - 10) + 10;
     const color = 'green';
+
+    if (Math.random() < 0.5) {
+      x = Math.random() < 0.5 ? 0 - radius : canvasElement.width + radius;
+      y = Math.random() * canvasElement.height;
+    } else {
+      x = Math.random() * canvasElement.width;
+      y = Math.random() < 0.5 ? 0 - radius : canvasElement.height + radius;
+    }
 
     const angle = Math.atan2(canvasElement.height / 2 - y, canvasElement.width / 2 - x);
 
