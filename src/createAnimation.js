@@ -23,8 +23,11 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies)
       // If they overlap (distance between centers is less than sum of radii),
       // remove both from their respective arrays.
       if (distance - enemy.radius - bullet.radius < 1) {
-        enemies.splice(enemyIndex, 1);
-        bullets.splice(bulletIndex, 1);
+        // Fix flashing effect on collision
+        setTimeout(() => {
+          enemies.splice(enemyIndex, 1);
+          bullets.splice(bulletIndex, 1);
+        }, 0);
       }
     });
   });
