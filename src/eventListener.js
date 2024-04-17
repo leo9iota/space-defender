@@ -2,6 +2,8 @@ import Bullet from './classes/Bullet.js';
 
 function eventListener(canvasContext, xCanvasCenter, yCanvasCenter, bullets) {
   addEventListener('click', (event) => {
+    console.log(bullets); // Print bullet array
+    
     const bulletAngle = Math.atan2(event.clientY - yCanvasCenter, event.clientX - xCanvasCenter);
 
     const bulletVelocity = {
