@@ -9,10 +9,25 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies)
 
   player.draw();
 
-  bullets.forEach((bullet) => {
+  // Bullet animation loop
+  bullets.forEach((bullet, bulletIndex) => {
     bullet.update();
+
+    // Remove bullets from edges of canvas
+    if (
+      bullet.x + bullet.radius < 0 ||
+      bullet.x - bullet.radius > canvasElement.width ||
+      bullet.y + bullet.radius < 0 ||
+      bullet.y - bullet.radius > canvasElement.height
+    ) {
+      setTimeout(() => {
+        bullets.splice(bulletIndex, 1);
+        console.log('Bullet off-screen removed!');
+      }, 0);
+    }
   });
 
+  // Enemies animation loop
   enemies.forEach((enemy, enemyIndex) => {
     enemy.update();
 
@@ -35,6 +50,7 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies)
         setTimeout(() => {
           enemies.splice(enemyIndex, 1);
           bullets.splice(bulletIndex, 1);
+          console.log('Bullet collided with enemy!');
         }, 0);
       }
     });
