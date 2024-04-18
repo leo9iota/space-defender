@@ -1,4 +1,4 @@
-class Explosion {
+class Particle {
   constructor(x, y, radius, color, velocity, canvasContext) {
     this.x = x;
     this.y = y;
@@ -27,4 +27,4 @@ class Explosion {
   }
 }
 
-export default Explosion;
+export default Particle;
