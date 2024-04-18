@@ -16,16 +16,16 @@ canvasElement.height = window.innerHeight;
 const xCanvasCenter = canvasElement.width / 2;
 const yCanvasCenter = canvasElement.height / 2;
 
+// Player Instance
+const player = new Player(xCanvasCenter, yCanvasCenter, 15, 'white', canvasContext);
+
 // Arrays for storing the bullets and enemies
 const bullets = [];
 const enemies = [];
-
-// Player Instance
-const player = new Player(xCanvasCenter, yCanvasCenter, 15, 'white', canvasContext);
-player.draw();
+const explosions = [];
 
 // -----------------------------------------------------------------------------------
 
 eventListener(canvasContext, xCanvasCenter, yCanvasCenter, bullets);
-createAnimation(canvasContext, canvasElement, player, bullets, enemies);
+createAnimation(canvasContext, canvasElement, player, bullets, enemies, explosions);
 spawnEnemies(canvasContext, canvasElement, enemies);
