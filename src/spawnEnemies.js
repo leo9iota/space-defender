@@ -3,7 +3,7 @@ import Enemy from './classes/Enemy.js';
 function spawnEnemies(canvasContext, canvasElement, enemies) {
   setInterval(() => {
     let x, y;
-    const radius = Math.random() * (30 - 10) + 10;
+    const radius = Math.random() * (30 - 4) + 4;
     const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
 
     if (Math.random() < 0.5) {
@@ -23,8 +23,6 @@ function spawnEnemies(canvasContext, canvasElement, enemies) {
     };
 
     enemies.push(new Enemy(x, y, radius, color, velocity, canvasContext));
-
-    console.log(enemies);
   }, 1000);
 }
 
