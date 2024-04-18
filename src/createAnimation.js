@@ -1,12 +1,12 @@
-import Explosion from './classes/Explosion.js';
+import Particle from './classes/Particle.js';
 
 import { animateTo } from './animateTo.js';
 
 let animationId;
 
-function createAnimation(canvasContext, canvasElement, player, bullets, enemies, explosions) {
+function createAnimation(canvasContext, canvasElement, player, bullets, enemies, particles) {
   animationId = requestAnimationFrame(() =>
-    createAnimation(canvasContext, canvasElement, player, bullets, enemies, explosions)
+    createAnimation(canvasContext, canvasElement, player, bullets, enemies, particles)
   );
 
   // Fill canvas background and create fade effect with RGBA
@@ -17,13 +17,13 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies,
   // Draw the player
   player.draw();
 
-  // Explosion animation
-  explosions.forEach((explosion, explosionIndex) => {
-    if (explosion.alpha <= 0) {
+  // Create explosion animation
+  particles.forEach((particle, particleIndex) => {
+    if (particle.alpha <= 0) {
       // Access alpha property of explosion object
-      explosions.splice(explosionIndex, 1);
+      particles.splice(particleIndex, 1);
     } else {
-      explosion.update();
+      particle.update();
     }
   });
 
@@ -63,15 +63,18 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies,
       // If they overlap (distance between centers is less than sum of radii),
       // remove both from their respective arrays.
       if (distance - enemy.radius - bullet.radius < 1) {
-        // Generate explosion
-        for (let i = 0; i < 8; i++) {
-          explosions.push(
-            new Explosion(
+        // Add explosion particles
+        for (let i = 0; i < enemy.radius * 2; i++) {
+          particles.push(
+            new Particle(
               bullet.x,
               bullet.y,
-              3,
+              Math.random() * 2,
               enemy.color,
-              { x: Math.random() - 0.5, y: Math.random() - 0.5 }, // Call Math.random() to get a random number
+              {
+                x: (Math.random() - 0.5) * (Math.random() * 5),
+                y: (Math.random() - 0.5) * (Math.random() * 5),
+              },
               canvasContext
             )
           );
