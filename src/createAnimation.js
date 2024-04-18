@@ -66,11 +66,10 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies,
               bullet.y,
               3,
               enemy.color,
-              { x: Math.random() - 0.5, y: Math.random - 0.5 },
+              { x: Math.random() - 0.5, y: Math.random() - 0.5 }, // Call Math.random() to get a random number
               canvasContext
             )
           );
-          console.log(i);
         }
 
         // Shrink enemy radius on bullet collision
