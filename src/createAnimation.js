@@ -1,10 +1,12 @@
+import Explosion from './classes/Explosion.js';
+
 import { animateTo } from './animateTo.js';
 
 let animationId;
 
-function createAnimation(canvasContext, canvasElement, player, bullets, enemies) {
+function createAnimation(canvasContext, canvasElement, player, bullets, enemies, explosions) {
   animationId = requestAnimationFrame(() =>
-    createAnimation(canvasContext, canvasElement, player, bullets, enemies)
+    createAnimation(canvasContext, canvasElement, player, bullets, enemies, explosions)
   );
 
   // Fill canvas background and create fade effect with RGBA
@@ -12,7 +14,12 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies)
 
   canvasContext.fillRect(0, 0, canvasElement.width, canvasElement.height);
 
+  // Draw the player
   player.draw();
+
+  explosions.forEach((explosion) => {
+    explosion.update();
+  });
 
   // Bullet animation loop
   bullets.forEach((bullet, bulletIndex) => {
@@ -51,9 +58,24 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies)
       // If they overlap (distance between centers is less than sum of radii),
       // remove both from their respective arrays.
       if (distance - enemy.radius - bullet.radius < 1) {
+        // Generate explosion
+        for (let i = 0; i < 8; i++) {
+          explosions.push(
+            new Explosion(
+              bullet.x,
+              bullet.y,
+              3,
+              enemy.color,
+              { x: Math.random() - 0.5, y: Math.random - 0.5 },
+              canvasContext
+            )
+          );
+          console.log(i);
+        }
+
         // Shrink enemy radius on bullet collision
-        if (enemy.radius - 5 > 5) {
-          animateTo(enemy, 500, { radius: enemy.radius - 10 });
+        if (enemy.radius - 10 > 5) {
+          animateTo(enemy, 250, { radius: enemy.radius - 10 });
 
           setTimeout(() => {
             bullets.splice(bulletIndex, 1);
