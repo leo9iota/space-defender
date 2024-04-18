@@ -17,8 +17,14 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies,
   // Draw the player
   player.draw();
 
-  explosions.forEach((explosion) => {
-    explosion.update();
+  // Explosion animation
+  explosions.forEach((explosion, explosionIndex) => {
+    if (explosion.alpha <= 0) {
+      // Access alpha property of explosion object
+      explosions.splice(explosionIndex, 1);
+    } else {
+      explosion.update();
+    }
   });
 
   // Bullet animation loop
