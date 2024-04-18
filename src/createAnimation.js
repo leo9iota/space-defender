@@ -34,7 +34,6 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies,
     ) {
       setTimeout(() => {
         bullets.splice(bulletIndex, 1);
-        console.log('Bullet off-screen removed!');
       }, 0);
     }
   });
@@ -84,7 +83,6 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies,
           setTimeout(() => {
             enemies.splice(enemyIndex, 1);
             bullets.splice(bulletIndex, 1);
-            console.log('Bullet collided with enemy!');
           }, 0);
         }
       }
