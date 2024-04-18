@@ -21,7 +21,7 @@ const bullets = [];
 const enemies = [];
 
 // Player Instance
-const player = new Player(xCanvasCenter, yCanvasCenter, 30, 'blue', canvasContext);
+const player = new Player(xCanvasCenter, yCanvasCenter, 15, 'white', canvasContext);
 player.draw();
 
 // -----------------------------------------------------------------------------------
