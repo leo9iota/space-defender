@@ -1,4 +1,4 @@
-class Bullet {
+class Enemy {
   constructor(x, y, radius, color, velocity, canvasContext) {
     this.x = x;
     this.y = y;
@@ -22,4 +22,4 @@ class Bullet {
   }
 }
 
-export default Bullet;
+export default Enemy;
