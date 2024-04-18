@@ -22,10 +22,10 @@ const player = new Player(xCanvasCenter, yCanvasCenter, 15, 'white', canvasConte
 // Arrays for storing the bullets and enemies
 const bullets = [];
 const enemies = [];
-const explosions = [];
+const particles = [];
 
 // -----------------------------------------------------------------------------------
 
 eventListener(canvasContext, xCanvasCenter, yCanvasCenter, bullets);
-createAnimation(canvasContext, canvasElement, player, bullets, enemies, explosions);
+createAnimation(canvasContext, canvasElement, player, bullets, enemies, particles);
 spawnEnemies(canvasContext, canvasElement, enemies);
