@@ -1,3 +1,5 @@
+import { animateTo } from './animateTo.js';
+
 let animationId;
 
 function createAnimation(canvasContext, canvasElement, player, bullets, enemies) {
@@ -50,8 +52,9 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies)
       // remove both from their respective arrays.
       if (distance - enemy.radius - bullet.radius < 1) {
         // Shrink enemy radius on bullet collision
-        if (enemy.radius - 5 > 10) {
-          enemy.radius -= 10;
+        if (enemy.radius - 5 > 5) {
+          animateTo(enemy, 500, { radius: enemy.radius - 10 });
+
           setTimeout(() => {
             bullets.splice(bulletIndex, 1);
           }, 0);
