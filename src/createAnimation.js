@@ -5,7 +5,10 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies)
     createAnimation(canvasContext, canvasElement, player, bullets, enemies)
   );
 
-  canvasContext.clearRect(0, 0, canvasElement.width, canvasElement.height);
+  // Fill canvas background and create fade effect with RGBA
+  canvasContext.fillStyle = 'rgba(0, 0, 0, 0.1)';
+
+  canvasContext.fillRect(0, 0, canvasElement.width, canvasElement.height);
 
   player.draw();
 
@@ -46,12 +49,20 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies)
       // If they overlap (distance between centers is less than sum of radii),
       // remove both from their respective arrays.
       if (distance - enemy.radius - bullet.radius < 1) {
-        // Wait for next frame to start removing enemy from array to fix flash effect
-        setTimeout(() => {
-          enemies.splice(enemyIndex, 1);
-          bullets.splice(bulletIndex, 1);
-          console.log('Bullet collided with enemy!');
-        }, 0);
+        // Shrink enemy radius on bullet collision
+        if (enemy.radius - 5 > 10) {
+          enemy.radius -= 10;
+          setTimeout(() => {
+            bullets.splice(bulletIndex, 1);
+          }, 0);
+        } else {
+          // Wait for next frame to start removing enemy from array to fix flash effect
+          setTimeout(() => {
+            enemies.splice(enemyIndex, 1);
+            bullets.splice(bulletIndex, 1);
+            console.log('Bullet collided with enemy!');
+          }, 0);
+        }
       }
     });
   });
