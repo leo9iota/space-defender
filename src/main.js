@@ -8,6 +8,12 @@ import { spawnEnemies } from './spawnEnemies.js';
 const canvasElement = document.querySelector('canvas');
 const canvasContext = canvasElement.getContext('2d');
 
+// Start game button
+const startGameButton = document.querySelector('#start-game-button');
+
+// Game overlay
+const gameOverlay = document.querySelector('#game-overlay-container');
+
 // Set the canvas width and height to match browser window
 canvasElement.width = window.innerWidth;
 canvasElement.height = window.innerHeight;
@@ -26,6 +32,9 @@ const particles = [];
 
 // -----------------------------------------------------------------------------------
 
-eventListener(canvasContext, xCanvasCenter, yCanvasCenter, bullets);
-createAnimation(canvasContext, canvasElement, player, bullets, enemies, particles);
-spawnEnemies(canvasContext, canvasElement, enemies);
+startGameButton.addEventListener('click', () => {
+  gameOverlay.style.display = 'none';
+  eventListener(canvasContext, xCanvasCenter, yCanvasCenter, bullets);
+  createAnimation(canvasContext, canvasElement, player, bullets, enemies, particles);
+  spawnEnemies(canvasContext, canvasElement, enemies);
+});
