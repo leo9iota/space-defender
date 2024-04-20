@@ -23,16 +23,25 @@ const xCanvasCenter = canvasElement.width / 2;
 const yCanvasCenter = canvasElement.height / 2;
 
 // Player Instance
-const player = new Player(xCanvasCenter, yCanvasCenter, 15, 'white', canvasContext);
+let player = new Player(xCanvasCenter, yCanvasCenter, 15, 'white', canvasContext);
 
 // Arrays for storing the bullets and enemies
-const bullets = [];
-const enemies = [];
-const particles = [];
+let bullets = [];
+let enemies = [];
+let particles = [];
+
+function resetGame() {
+  player = new Player(xCanvasCenter, yCanvasCenter, 15, 'white', canvasContext);
+  bullets = [];
+  enemies = [];
+  particles = [];
+  playerScore = 0;
+}
 
 // -----------------------------------------------------------------------------------
 
 startGameButton.addEventListener('click', () => {
+  resetGame();
   eventListener(canvasContext, xCanvasCenter, yCanvasCenter, bullets);
   createAnimation(canvasContext, canvasElement, player, bullets, enemies, particles);
   spawnEnemies(canvasContext, canvasElement, enemies);
