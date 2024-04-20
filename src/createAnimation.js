@@ -3,6 +3,13 @@ import Particle from './classes/Particle.js';
 import { animateTo } from './animateTo.js';
 
 let animationId;
+const gameOverlay = document.querySelector('#game-overlay-container');
+
+// Constants for scoring system
+const scoreValue = document.querySelector('#score-value');
+
+// Player score
+let playerScore = 0;
 
 function createAnimation(canvasContext, canvasElement, player, bullets, enemies, particles) {
   animationId = requestAnimationFrame(() =>
@@ -53,6 +60,7 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies,
     // End game
     if (distance - enemy.radius - player.radius < 1) {
       cancelAnimationFrame(animationId);
+      gameOverlay.style.display = 'flex';
     }
 
     bullets.forEach((bullet, bulletIndex) => {
@@ -82,12 +90,20 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies,
 
         // Shrink enemy radius on bullet collision
         if (enemy.radius - 10 > 5) {
+          // Increase player score value
+          playerScore += 100;
+          scoreValue.innerHTML = playerScore;
+
           animateTo(enemy, 250, { radius: enemy.radius - 10 });
 
           setTimeout(() => {
             bullets.splice(bulletIndex, 1);
           }, 0);
         } else {
+          // Player score increase when enemy is killed and removed from canvas
+          playerScore += 250;
+          scoreValue.innerHTML = playerScore;
+
           // Wait for next frame to start removing enemy from array to fix flash effect
           setTimeout(() => {
             enemies.splice(enemyIndex, 1);
