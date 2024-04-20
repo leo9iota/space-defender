@@ -5,8 +5,9 @@ import { animateTo } from './animateTo.js';
 let animationId;
 const gameOverlay = document.querySelector('#game-overlay-container');
 
-// Constants for scoring system
+// Constants for scoring system and game overlay
 const scoreValue = document.querySelector('#score-value');
+const gameOverlayScore = document.querySelector('#game-overlay-score');
 
 // Player score
 let playerScore = 0;
@@ -61,6 +62,7 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies,
     if (distance - enemy.radius - player.radius < 1) {
       cancelAnimationFrame(animationId);
       gameOverlay.style.display = 'flex';
+      gameOverlayScore.innerHTML = playerScore;
     }
 
     bullets.forEach((bullet, bulletIndex) => {
