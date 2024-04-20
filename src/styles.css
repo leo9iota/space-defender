@@ -2,9 +2,57 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  background-color: black;
 }
 
-.score-container {
+/* Top left score indicator */
+#score-container {
   position: fixed;
   color: white;
+  font-size: 0.875rem;
+  margin-left: 0.5rem;
+  margin-top: 0.25rem;
+  user-select: none;
+}
+
+/* Game overlay */
+#game-overlay-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: 0px;
+}
+
+#game-overlay {
+  background-color: white;
+  border-radius: 15px;
+  max-width: 28rem;
+  width: 100%;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+#game-overlay-score {
+  font-size: 2.25rem; /* 36px */
+  line-height: 2.5rem; /* 40px */
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+#game-overlay-score-text {
+  color: rgb(55 65 81);
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+  margin-top: 0;
+}
+
+#start-game-button {
+  width: 100%;
+  background-color: #3b82f6;
+  color: white;
+  padding-top: 0.75rem; /* 12px */
+  padding-bottom: 0.75rem; /* 12px */
+  border-radius: 15px;
 }
