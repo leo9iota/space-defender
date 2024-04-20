@@ -33,8 +33,8 @@ const particles = [];
 // -----------------------------------------------------------------------------------
 
 startGameButton.addEventListener('click', () => {
-  gameOverlay.style.display = 'none';
   eventListener(canvasContext, xCanvasCenter, yCanvasCenter, bullets);
   createAnimation(canvasContext, canvasElement, player, bullets, enemies, particles);
   spawnEnemies(canvasContext, canvasElement, enemies);
+  gameOverlay.style.display = 'none';
 });
