@@ -11,8 +11,10 @@ const canvasContext = canvasElement.getContext('2d');
 // Start game button
 const startGameButton = document.querySelector('#start-game-button');
 
-// Game overlay
+// Game overlay and score
+const scoreValue = document.querySelector('#score-value');
 const gameOverlay = document.querySelector('#game-overlay-container');
+const gameOverlayScore = document.querySelector('#game-overlay-score');
 
 // Set the canvas width and height to match browser window
 canvasElement.width = window.innerWidth;
@@ -36,6 +38,8 @@ function resetGame() {
   enemies = [];
   particles = [];
   playerScore = 0;
+  scoreValue.innerHTML = 0;
+  gameOverlayScore.innerHTML = 0;
 }
 
 // -----------------------------------------------------------------------------------
