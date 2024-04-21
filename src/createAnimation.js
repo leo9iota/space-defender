@@ -3,14 +3,15 @@ import Particle from './classes/Particle.js';
 import { animateTo } from './animateTo.js';
 
 let animationId;
-const gameOverlay = document.querySelector('#game-overlay-container');
 
 // Constants for scoring system and game overlay
 const scoreValue = document.querySelector('#score-value');
+const gameOverlay = document.querySelector('#game-overlay-container');
 const gameOverlayScore = document.querySelector('#game-overlay-score');
 
 // Player score
 let playerScore = 0;
+window.playerScore = playerScore;
 
 function createAnimation(canvasContext, canvasElement, player, bullets, enemies, particles) {
   animationId = requestAnimationFrame(() =>
@@ -22,10 +23,10 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies,
 
   canvasContext.fillRect(0, 0, canvasElement.width, canvasElement.height);
 
-  // Draw the player
+  // Draw player
   player.draw();
 
-  // Create explosion animation
+  // Animation loop for particles (explosion on collision)
   particles.forEach((particle, particleIndex) => {
     if (particle.alpha <= 0) {
       // Access alpha property of explosion object
@@ -35,7 +36,7 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies,
     }
   });
 
-  // Bullet animation loop
+  // Animation loop for bullets
   bullets.forEach((bullet, bulletIndex) => {
     bullet.update();
 
@@ -52,7 +53,7 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies,
     }
   });
 
-  // Enemies animation loop
+  // Animation loop for enemies
   enemies.forEach((enemy, enemyIndex) => {
     enemy.update();
 
