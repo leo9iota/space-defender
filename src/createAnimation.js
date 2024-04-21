@@ -47,9 +47,7 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies,
       bullet.y + bullet.radius < 0 ||
       bullet.y - bullet.radius > canvasElement.height
     ) {
-      setTimeout(() => {
-        bullets.splice(bulletIndex, 1);
-      }, 0);
+      bullets.splice(bulletIndex, 1);
     }
   });
 
@@ -99,19 +97,15 @@ function createAnimation(canvasContext, canvasElement, player, bullets, enemies,
 
           animateTo(enemy, 250, { radius: enemy.radius - 10 });
 
-          setTimeout(() => {
-            bullets.splice(bulletIndex, 1);
-          }, 0);
+          bullets.splice(bulletIndex, 1);
         } else {
           // Player score increase when enemy is killed and removed from canvas
           playerScore += 250;
           scoreValue.innerHTML = playerScore;
 
           // Wait for next frame to start removing enemy from array to fix flash effect
-          setTimeout(() => {
-            enemies.splice(enemyIndex, 1);
-            bullets.splice(bulletIndex, 1);
-          }, 0);
+          enemies.splice(enemyIndex, 1);
+          bullets.splice(bulletIndex, 1);
         }
       }
     });
